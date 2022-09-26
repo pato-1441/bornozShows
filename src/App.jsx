@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import Hero from "./components/Hero/Hero";
+import ItemListContainer from "./components/ItemListContainer/ItemListContainer";
 import NavBar from "./components/NavBar/NavBar";
 
 function App() {
@@ -8,7 +8,7 @@ function App() {
     <div className="container-fluid">
       <div className="h-screen bg-gradient-to-b from-gray-900 to-slate-800 flex flex-col text-white">
         <NavBar />
-        <Hero/>
+        <ItemListContainer greeting={'Bienvenido a mi web'}/>
       </div>
     </div>
   );
