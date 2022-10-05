@@ -1,6 +1,6 @@
 import React from "react";
 import CartWidget from "../CartWidget/CartWidget";
-import bornozTicketsLogo from "./assets/bornozTickets.png";
+import bornozTicketsLogo from "/assets/bornozTickets.png";
 
 const NavBar = () => {
   return (
