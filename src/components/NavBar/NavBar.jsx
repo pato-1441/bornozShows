@@ -1,5 +1,8 @@
 import React from "react";
+import { Link } from "react-router-dom";
+
 import CartWidget from "../CartWidget/CartWidget";
+
 import bornozTicketsLogo from "/assets/bornozTickets.png";
 
 const NavBar = () => {
@@ -7,13 +10,14 @@ const NavBar = () => {
     <div>
       <div className="navbar bg-base-100">
         <div className="flex-1">
-          <a className="btn btn-ghost normal-case text-xl"><img src={bornozTicketsLogo} className="w-16"/></a>
+          <Link to="/" className="btn btn-ghost text-xl normal-case">
+            <img src={bornozTicketsLogo} className="w-16" />
+          </Link>
           <h1 className="font-semibold">Bornoz Tickets</h1>
         </div>
         <div className="flex-none">
           <ul className="menu menu-horizontal p-0">
-            <li><a>Inicio</a></li>
-            <li><a>Eventos</a></li>
+            <Link to="/eventos">Eventos</Link>
           </ul>
         </div>
         <CartWidget />

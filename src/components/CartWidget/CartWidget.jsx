@@ -1,9 +1,10 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const CartWidget = () => {
   return (
         <div className="flex-none">
-          <a href="#">
+          <Link to='/cart'>
             <div className="dropdown dropdown-end">
               <label tabIndex={0} className="btn btn-ghost btn-circle">
                 <div className="indicator">
@@ -12,7 +13,7 @@ const CartWidget = () => {
                 </div>
               </label>
             </div>
-          </a>
+          </Link>
         </div>
     );
 };
