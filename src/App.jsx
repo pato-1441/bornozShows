@@ -1,4 +1,4 @@
-import {BrowserRouter, Routes, Route} from 'react-router-dom';
+import {BrowserRouter, Routes, Route, Navigate} from 'react-router-dom';
 
 import Navbar from "./components/Navbar/Navbar";
 import ItemListContainer from "./components/Pages/ItemListContainer/ItemListContainer"
@@ -16,7 +16,8 @@ function App() {
           <Routes>
             <Route path='/' element={<ItemListContainer greeting={'Bienvenido a mi web'} />} />
             <Route path='/detail' element={<ItemDetailContainer /> } />
-            <Route path='/cart' element={<CarritoPage />} />           
+            <Route path='/cart' element={<CarritoPage />} />
+            <Route path='*' element={ <Navigate to='/'/>} />           
                    
           </Routes>
           
