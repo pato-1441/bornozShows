@@ -16,7 +16,7 @@ function App() {
           <Navbar />
 
           <Routes>
-            <Route path='/' element={<ItemListContainer greeting={'Bienvenido a mi web'} />} />
+            <Route path='/' element={<ItemListContainer greeting={'Bornoz Tickets'} />} />
             <Route path='/detail' element={<ItemDetailContainer /> } />
             <Route path='/cart' element={<CarritoPage />} />
             <Route path='/eventos' element={<Eventos />} />

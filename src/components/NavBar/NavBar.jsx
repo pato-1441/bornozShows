@@ -13,7 +13,6 @@ const NavBar = () => {
           <Link to="/" className="btn btn-ghost text-xl normal-case">
             <img src={bornozTicketsLogo} className="w-16" />
           </Link>
-          <h1 className="font-semibold">Bornoz Tickets</h1>
         </div>
         <div className="flex-none">
           <ul className="menu menu-horizontal p-0">
