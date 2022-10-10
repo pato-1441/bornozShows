@@ -4,6 +4,8 @@ import Navbar from "./components/Navbar/Navbar";
 import ItemListContainer from "./components/Pages/ItemListContainer/ItemListContainer"
 import ItemDetailContainer from "./components/Pages/ItemDetailContainer/ItemDetailContainer";
 import CarritoPage from "./components/Pages/CarritoPage/CarritoPage";
+import Eventos from "./components/Pages/Eventos/Eventos";
+import NotFound from './components/404NotFound/404NotFound';
 
 function App() {
 
@@ -17,7 +19,8 @@ function App() {
             <Route path='/' element={<ItemListContainer greeting={'Bienvenido a mi web'} />} />
             <Route path='/detail' element={<ItemDetailContainer /> } />
             <Route path='/cart' element={<CarritoPage />} />
-            <Route path='*' element={ <Navigate to='/'/>} />           
+            <Route path='/eventos' element={<Eventos />} />
+            <Route path='*' element={ <NotFound />} />           
                    
           </Routes>
           
