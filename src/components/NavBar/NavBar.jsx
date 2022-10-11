@@ -16,7 +16,9 @@ const NavBar = () => {
         </div>
         <div className="flex-none">
           <ul className="menu menu-horizontal p-0">
-            <Link to="/eventos">Eventos</Link>
+            <Link to="/category/general">General</Link>
+            <Link to="/category/platea">Platea</Link>
+            <Link to="/category/vip">VIP</Link>
           </ul>
         </div>
         <CartWidget />

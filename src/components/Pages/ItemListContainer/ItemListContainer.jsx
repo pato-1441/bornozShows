@@ -17,7 +17,7 @@ const ItemListContainer = ({ greeting }) => {
   return (
     <>
       <h1 className="py-4 text-center text-3xl">{greeting}</h1>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 w-2/3 mx-auto">
         {loading ? (
           <button className="btn loading border-none bg-inherit">
             Cargando
@@ -25,22 +25,19 @@ const ItemListContainer = ({ greeting }) => {
         ) : (
           productos.map(
             (prod) => (
-              <div key={prod.id}>
-                <Link to='/eventos'>
-                  <div className="card-compact card w-64 bg-base-100 shadow-xl">
-                    <figure>
-                      <img src={prod.image} />
-                    </figure>
+              <div key={prod.id} className='p-2'>                
+                <div className="card-compact card w-64 bg-base-100 shadow-xl">
+                  <figure>
+                    <img src={prod.image} />
+                  </figure>
+                  <Link to='/category/general'>
                     <div className="card-body">
                       <h2 className="card-title">{prod.name}</h2>
                       <span className="text-xs">{prod.category}</span>
                       <p>${prod.price}</p>
-                      <div className="card-actions justify-end">
-                        <button className="btn btn-primary">Comprar</button>
-                      </div>
                     </div>
-                  </div>                
-                </Link>
+                  </Link>
+                </div>   
               </div>
             ),
 

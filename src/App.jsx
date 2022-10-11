@@ -17,9 +17,10 @@ function App() {
 
           <Routes>
             <Route path='/' element={<ItemListContainer greeting={'Bornoz Tickets'} />} />
-            <Route path='/detail' element={<ItemDetailContainer /> } />
+            <Route path='/category/:categoryID' element={<ItemListContainer greeting={'Bornoz Tickets'} />} />
+            <Route path='/detail/:eventID' element={<ItemDetailContainer /> } />
             <Route path='/cart' element={<CarritoPage />} />
-            <Route path='/eventos' element={<Eventos />} />
+            <Route path='/events' element={<Eventos />} />
             <Route path='*' element={ <NotFound />} />           
                    
           </Routes>
