@@ -28,7 +28,7 @@ const ItemListContainer = ({ greeting }) => {
   //console.log(productos);
   return (
     <>
-      <h1 className="py-5 text-center text-3xl">{greeting}</h1>
+      <h1 className="py-5 text-center text-3xl font-bold">{greeting}</h1>
       <div className="mx-auto grid w-2/3 grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3">
         {loading ? (
           <button className="btn loading col-span-3 border-none bg-inherit pt-20">
@@ -37,15 +37,19 @@ const ItemListContainer = ({ greeting }) => {
         ) : (
           productos.map((prod) => (
             <div key={prod.id} className="p-2">
-              <div className="card-compact card w-64 bg-base-100 shadow-xl">
+              <div className="card-compact card w-64 bg-slate-900 shadow-xl hover:scale-105 transition-transform">
                 <Link to={`/detail/${prod.id}`}>
                   <figure>
                     <img src={prod.image} />
                   </figure>
-                  <div className="card-body">
-                    <h2 className="card-title">{prod.name}</h2>
-                    <span className="text-sm capitalize">{prod.category}</span>
-                    <p>${prod.price}</p>
+                  <div className="card-body flex flex-row justify-between">
+                    <h2 className="card-title">{prod.name}<span className="badge badge-sm border-none bg-slate-700 text-white uppercase">{prod.category}</span></h2>
+                  </div>
+                  <div className="card-body flex flex-col justify-between">
+                    <p className="flex justify-between">
+                      <span className="pt-1 px-2 bg-slate-600 rounded-lg font-semibold">Ver más</span>
+                      <span className="p-1 bg-slate-600 rounded-lg font-semibold">${prod.price}</span>
+                    </p>
                   </div>
                 </Link>
               </div>
