@@ -29,7 +29,7 @@ const ItemListContainer = ({ greeting }) => {
   return (
     <>
       <h1 className="py-5 text-center text-3xl font-bold">{greeting}</h1>
-      <div className="mx-auto grid w-2/3 grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3 sm:bg-gray-700 rounded-box">
+      <div className="mx-auto grid w-2/3 grid-cols-1 gap-x-5 md:grid-cols-2 lg:grid-cols-3 sm:bg-gray-700 rounded-box">
         {loading ? (
           <button className="btn loading col-span-3 border-none bg-inherit">
             Cargando
