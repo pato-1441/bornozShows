@@ -38,13 +38,13 @@ const ItemListContainer = ({ greeting }) => {
           productos.map((prod) => (
             <div key={prod.id} className="p-2">
               <div className="card-compact card w-64 bg-base-100 shadow-xl">
-                <figure>
-                  <img src={prod.image} />
-                </figure>
                 <Link to={`/detail/${prod.id}`}>
+                  <figure>
+                    <img src={prod.image} />
+                  </figure>
                   <div className="card-body">
                     <h2 className="card-title">{prod.name}</h2>
-                    <span className="text-xs">{prod.category}</span>
+                    <span className="text-sm capitalize">{prod.category}</span>
                     <p>${prod.price}</p>
                   </div>
                 </Link>
