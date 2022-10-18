@@ -8,7 +8,6 @@ const ItemListContainer = ({ greeting }) => {
   const [loading, setLoading] = useState(true);
 
   const { categoryID } = useParams();
-  console.log(categoryID);
 
   useEffect(() => {
     if (categoryID) {
@@ -25,8 +24,7 @@ const ItemListContainer = ({ greeting }) => {
         .finally(() => setLoading(false));
     }
   }, [categoryID]);
-
-  //console.log(productos);
+  
   return (
     <>
       <h1 className="py-5 text-center text-3xl font-semibold">{greeting}</h1>

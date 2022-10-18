@@ -3,21 +3,11 @@ import { useState } from "react";
 const ItemCount = ({ stock, init, onAdd }) => {
   const [count, setCount] = useState(init);
 
-  const handlePlus = () => {
-    if (count < stock) {
-      setCount(count + 1);
-    }
-  };
+  const handlePlus = () => count < stock && setCount(count + 1);
 
-  const handleSubstract = () => {
-    if (count > init) {
-      setCount(count - 1);
-    }
-  };
+  const handleSubstract = () => count > init && setCount(count - 1);
 
-  const handleAdd = (count) => {
-    onAdd(count);
-  };
+  const handleAdd = (count) => onAdd(count);
 
   return (
     <div>
