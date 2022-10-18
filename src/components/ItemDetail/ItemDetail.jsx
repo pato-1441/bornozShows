@@ -17,7 +17,7 @@ const ItemDetail = ({ evento }) => {
   console.log(cartList);
 
   return (
-    <div className="w-100 mx-auto sm:w-2/3 mt-10 h-screen">
+    <div className="w-100 mx-auto w-2/3 mt-10 h-screen">
       <div className="flex flex-col gap-10 lg:flex-row">
         <img
           src={eventoDetalle.image}

@@ -41,7 +41,7 @@ const CarritoPage = () => {
         </div>  
 
         <div className="mt-5">
-          <div className="flex justify-between">
+          <div className="flex flex-col sm:flex-row justify-between gap-y-2">
             <button className="btn btn-sm glass text-white shadow-xl" onClick={()=>vaciarCarrito()}>Vaciar Carrito</button>
             <button className="btn btn-sm bg-green-800 hover:bg-green-700 text-white shadow-xl">Finalizar Compra</button>
           </div>
