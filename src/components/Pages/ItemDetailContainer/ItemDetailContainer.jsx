@@ -11,21 +11,26 @@ const ItemDetailContainer = () => {
 
   useEffect(() => {
     if (eventID) {
-      gFetch() // simulacion de fetch -> mock
-        .then((res) => setEvento(res.filter((evento) => evento.id == eventID)))
-        .catch((err) => console.log(err))
-        .finally(() => setLoading(false));
-    } else {
-      gFetch() // simulacion de fetch -> mock
+      gFetch(eventID) // simulacion de fetch -> mock
         .then((res) => setEvento(res))
         .catch((err) => console.log(err))
         .finally(() => setLoading(false));
     }
   }, [eventID]);
   return (
-    <div>
-      <ItemDetail evento={evento} />
-    </div>
+    <>
+      {loading ? (
+        <div className="mt-10 rounded-box mx-auto grid w-2/3 bg-gray-700">
+          <button className="btn loading col-span-3 border-none bg-inherit text-white">
+            Cargando
+          </button>
+        </div>
+      ) : (
+        <div>
+          <ItemDetail evento={evento} />
+        </div>
+      )}
+    </>
   );
 };
 
