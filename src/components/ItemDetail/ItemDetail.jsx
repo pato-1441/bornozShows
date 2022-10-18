@@ -45,12 +45,12 @@ const ItemDetail = ({ evento }) => {
               isCount ?
                <ItemCount onAdd={onAdd} stock={eventoDetalle.stock} init={1} eventoDetalle={eventoDetalle} />
                 :
-                <div>
-                  <Link to={'/cart'}>
-                    Terminar Compra
+                <div className="flex gap-2">
+                  <Link to={'/'} className="btn border-none w-1/2 bg-pink-800 font-semibold text-white hover:bg-pink-600">
+                    Seguir comprando
                   </Link>
-                  <Link to={'/'}>
-                    Seguir Comprando
+                  <Link to={'/cart'} className="btn glass border-none w-1/2 bg-green-800 font-semibold text-white hover:bg-green-600">
+                    Ir al carrito
                   </Link>
                 </div>
             }
