@@ -43,7 +43,7 @@ const ItemDetail = ({ evento }) => {
             </div>      
             {
               isCount ?
-               <ItemCount onAdd={onAdd} stock={eventoDetalle.stock} init={1} />
+               <ItemCount onAdd={onAdd} stock={eventoDetalle.stock} init={1} eventoDetalle={eventoDetalle} />
                 :
                 <div>
                   <Link to={'/cart'}>
