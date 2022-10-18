@@ -8,26 +8,35 @@ const ItemDetail = ({ evento }) => {
     setEvento(...evento);
   }, [evento]);
 
-  const {addItem , cartList} = useContext(CartContext)
+  const { addItem, cartList } = useContext(CartContext);
 
   const onAdd = (cantidad) => {
-    console.log('onAdd',cantidad);
-    addItem( {...eventoDetalle, cantidad} )
-  }
-  console.log(cartList)
+    console.log("onAdd", cantidad);
+    addItem({ ...eventoDetalle, cantidad });
+  };
+  console.log(cartList);
 
   return (
-    <div className="hero mx-auto mt-10 max-h-screen w-100 sm:w-2/3">
-      <div className="hero-content flex-col lg:flex-row gap-10">
+    <div className="w-100 hero mx-auto mt-10 max-h-screen sm:w-2/3">
+      <div className="hero-content flex-col gap-10 lg:flex-row">
         <img
           src={eventoDetalle.image}
-          className="max-w-xs sm:max-w-md rounded-lg shadow-xl hover:scale-105 transition-transform"
+          className="max-w-xs rounded-lg shadow-xl transition-transform hover:scale-105 sm:max-w-md"
         />
         <div>
           <h1 className="text-5xl font-bold">{eventoDetalle.name}</h1>
-          <h2 className="text-lg font-base uppercase">{eventoDetalle.category}</h2>
-          <p className="py-6 text-sm sm:text-base">{eventoDetalle.description}</p>
-          <button className="p-2 bg-slate-600 rounded-lg font-semibold" onClick={()=>onAdd()}>${eventoDetalle.price}</button>
+          <h2 className="font-base text-lg uppercase">
+            {eventoDetalle.category}
+          </h2>
+          <p className="py-6 text-sm sm:text-base">
+            {eventoDetalle.description}
+          </p>
+          <button
+            className="rounded-lg bg-slate-600 p-2 font-semibold"
+            onClick={() => onAdd()}
+          >
+            ${eventoDetalle.price}
+          </button>
         </div>
       </div>
     </div>
