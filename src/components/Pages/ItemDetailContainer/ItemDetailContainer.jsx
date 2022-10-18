@@ -8,7 +8,6 @@ const ItemDetailContainer = () => {
   const [loading, setLoading] = useState(true);
 
   const { eventID } = useParams();
-  console.log(eventID);
 
   useEffect(() => {
     if (eventID) {

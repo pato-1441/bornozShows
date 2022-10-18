@@ -6,9 +6,11 @@ import ItemDetailContainer from "./components/Pages/ItemDetailContainer/ItemDeta
 import CarritoPage from "./components/Pages/CarritoPage/CarritoPage";
 import Eventos from "./components/Pages/Eventos/Eventos";
 import NotFound from "./components/404NotFound/404NotFound";
+import CartContextProvider from "./context/cartContext";
 
 const App = () => {
   return (
+    <CartContextProvider>
       <BrowserRouter>
         <div className="container-fluid">
           <div className="flex h-screen flex-col bg-slate-800 text-white">
@@ -33,7 +35,8 @@ const App = () => {
           </div>
         </div>
       </BrowserRouter>
+    </CartContextProvider>
   );
-}
+};
 
 export default App;

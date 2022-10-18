@@ -1,14 +1,20 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { CartContext } from "../../context/cartContext";
 
 const ItemDetail = ({ evento }) => {
   const [loading, setLoading] = useState(true);
-  console.log(evento);
   const [eventoDetalle = [], setEvento] = useState(evento);
   useEffect(() => {
     setEvento(...evento);
   }, [evento]);
 
-  console.log(eventoDetalle);
+  const {addItem , cartList} = useContext(CartContext)
+
+  const onAdd = (cantidad) => {
+    console.log('onAdd',cantidad);
+    addItem( {...eventoDetalle, cantidad} )
+  }
+  console.log(cartList)
 
   return (
     <div className="hero mx-auto mt-10 max-h-screen w-100 sm:w-2/3">
@@ -21,7 +27,7 @@ const ItemDetail = ({ evento }) => {
           <h1 className="text-5xl font-bold">{eventoDetalle.name}</h1>
           <h2 className="text-lg font-base uppercase">{eventoDetalle.category}</h2>
           <p className="py-6 text-sm sm:text-base">{eventoDetalle.description}</p>
-          <button className="p-2 bg-slate-600 rounded-lg font-semibold">${eventoDetalle.price}</button>
+          <button className="p-2 bg-slate-600 rounded-lg font-semibold" onClick={()=>onAdd()}>${eventoDetalle.price}</button>
         </div>
       </div>
     </div>
