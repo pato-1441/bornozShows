@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { CartContext } from "../../context/cartContext";
 import ItemCount from "../ItemCount/ItemCount";
 
@@ -8,10 +9,12 @@ const ItemDetail = ({ evento }) => {
     setEvento(...evento);
   }, [evento]);
 
-  const { addItem, cartList } = useContext(CartContext);
+  const [isCount, setIsCount] = useState(true)
+  const { addItem } = useContext(CartContext);
 
   const onAdd = (cantidad) => {
     addItem({ ...eventoDetalle, cantidad });
+    setIsCount(false)
   };
 
   return (
@@ -37,8 +40,20 @@ const ItemDetail = ({ evento }) => {
               <span className="rounded-lg bg-slate-600 p-2 py-3 font-semibold text-white">
                 Disponibles: {eventoDetalle.stock}
               </span>
-            </div>            
-            <ItemCount onAdd={onAdd} stock={eventoDetalle.stock} init={1} />
+            </div>      
+            {
+              isCount ?
+               <ItemCount onAdd={onAdd} stock={eventoDetalle.stock} init={1} />
+                :
+                <div>
+                  <Link to={'/cart'}>
+                    Terminar Compra
+                  </Link>
+                  <Link to={'/'}>
+                    Seguir Comprando
+                  </Link>
+                </div>
+            }
           </div>
         </div>
       </div>
