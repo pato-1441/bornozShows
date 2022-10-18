@@ -12,8 +12,8 @@ const App = () => {
   return (
     <CartContextProvider>
       <BrowserRouter>
-        <div className="container-fluid">
-          <div className="flex h-screen flex-col bg-slate-800 text-white">
+        <div className="container-fluid h-fit bg-slate-800 pb-10">
+          <div className="flex flex-col bg-slate-800 text-white">
             <Navbar />
             <Routes>
               <Route
@@ -22,7 +22,7 @@ const App = () => {
               />
               <Route
                 path="/category/:categoryID"
-                element={<ItemListContainer greeting={"Bornoz Tickets"} />}
+                element={<ItemListContainer greeting={"Bornoz Events"} />}
               />
               <Route
                 path="/detail/:eventID"

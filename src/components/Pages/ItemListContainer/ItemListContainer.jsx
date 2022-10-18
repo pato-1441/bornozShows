@@ -31,7 +31,7 @@ const ItemListContainer = ({ greeting }) => {
       <h1 className="py-5 text-center text-3xl font-semibold">{greeting}</h1>
       <div className="mx-auto grid w-2/3 grid-cols-1 gap-x-5 md:grid-cols-2 lg:grid-cols-3 sm:bg-gray-700 rounded-box">
         {loading ? (
-          <button className="btn loading col-span-3 border-none bg-inherit">
+          <button className="btn loading col-span-3 border-none bg-inherit text-white">
             Cargando
           </button>
         ) : (
@@ -45,7 +45,7 @@ const ItemListContainer = ({ greeting }) => {
                   <div className="card-body flex flex-row justify-between">
                     <h2 className="card-title">{prod.name}<span className="badge badge-sm border-none bg-slate-700 text-white uppercase">{prod.category}</span></h2>
                   </div>
-                  <div className="px-4 text-sm flex flex-row justify-between truncate">
+                  <div className="px-4 text-sm flex flex-row justify-between">
                     {prod.description}
                   </div>
                   <div className="card-body flex flex-col justify-between">
