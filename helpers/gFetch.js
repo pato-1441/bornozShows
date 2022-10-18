@@ -57,14 +57,8 @@ const productos = [
 
 export const gFetch = (id) => {
   return new Promise((res, rej) => {
-    if (id) {
-      setTimeout(() => {
-        res(productos.filter((prod) => prod.id === id));
-      }, 2000);
-    } else {
-      setTimeout(() => {
-        res(productos);
-      }, 2000);
-    }
+    setTimeout(() => {
+      res(id ? productos.filter((prod) => prod.id === id) : productos);
+    }, 1000);
   });
 };

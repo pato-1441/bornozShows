@@ -15,6 +15,7 @@ const CarritoPage = () => {
                 <th>Disponibles</th>
                 <th>Evento</th>
                 <th>Categoria</th>
+                <th>Cantidad</th>
                 <th>Total</th>
               </tr>
             </thead>
@@ -25,6 +26,7 @@ const CarritoPage = () => {
                   <td></td>
                   <td></td>
                   <td></td>
+                  <td></td>
                 </tr>
                   :
                 cartList.map((evento)=>
@@ -32,7 +34,8 @@ const CarritoPage = () => {
                     <th>{evento.stock}</th>
                     <td>{evento.name}</td>
                     <td className="capitalize">{evento.category}</td>
-                    <td><span className="bg-gray-800 text-white px-2 py-1 rounded-box">${evento.price}</span></td>
+                    <td className="capitalize">{evento.cantidad}</td>
+                    <td><span className="bg-gray-800 text-white px-2 py-1 rounded-box">${(evento.price*evento.cantidad)}</span></td>
                   </tr>
                 )
               }

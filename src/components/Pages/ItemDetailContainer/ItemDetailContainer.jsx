@@ -20,7 +20,7 @@ const ItemDetailContainer = () => {
   return (
     <>
       {loading ? (
-        <div className="mt-10 rounded-box mx-auto grid w-2/3 bg-gray-700">
+        <div className="rounded-box mx-auto mt-10 grid w-2/3 bg-gray-700">
           <button className="btn loading col-span-3 border-none bg-inherit text-white">
             Cargando
           </button>
