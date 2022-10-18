@@ -9,20 +9,20 @@ const ItemDetail = ({ evento }) => {
     setEvento(...evento);
   }, [evento]);
 
-  const [isCount, setIsCount] = useState(true)
+  const [isCount, setIsCount] = useState(true);
   const { addItem } = useContext(CartContext);
 
   const onAdd = (cantidad) => {
     addItem({ ...eventoDetalle, cantidad });
-    setIsCount(false)
+    setIsCount(false);
   };
 
   return (
-    <div className="w-100 mx-auto w-2/3 mt-10 h-screen">
+    <div className="w-100 mx-auto mt-10 h-screen w-2/3">
       <div className="flex flex-col gap-10 lg:flex-row">
         <img
           src={eventoDetalle.image}
-          className="max-w-xs h-fit rounded-lg shadow-xl transition-transform hover:scale-105 sm:max-w-md"
+          className="h-fit max-w-xs rounded-lg shadow-xl transition-transform hover:scale-105 sm:max-w-md"
         />
         <div>
           <h1 className="text-5xl font-bold">{eventoDetalle.name}</h1>
@@ -32,28 +32,40 @@ const ItemDetail = ({ evento }) => {
           <p className="py-6 text-sm sm:text-base">
             {eventoDetalle.description}
           </p>
-          <div className="flex flex-col gap-4 justify-between">
-            <div className="flex justify-between">
-              <span className="rounded-lg bg-slate-600 p-2 py-3 font-semibold text-white">
-                ${eventoDetalle.price}
-              </span>
-              <span className="rounded-lg bg-slate-600 p-2 py-3 font-semibold text-white">
-                Disponibles: {eventoDetalle.stock}
-              </span>
-            </div>      
-            {
-              isCount ?
-               <ItemCount onAdd={onAdd} stock={eventoDetalle.stock} init={1} eventoDetalle={eventoDetalle} />
-                :
+          <div className="flex flex-col">
+            <div>
+              <div className="flex justify-between pb-3">
+                <span className="rounded-lg bg-slate-600 p-2 py-3 font-semibold text-white">
+                  ${eventoDetalle.price}
+                </span>
+                <span className="rounded-lg bg-slate-600 p-2 py-3 font-semibold text-white">
+                  Disponibles: {eventoDetalle.stock}
+                </span>
+              </div>
+              {isCount ? (
+                <ItemCount
+                  onAdd={onAdd}
+                  stock={eventoDetalle.stock}
+                  init={1}
+                  eventoDetalle={eventoDetalle}
+                />
+              ) : (
                 <div className="flex gap-2">
-                  <Link to={'/'} className="btn border-none w-1/2 bg-pink-800 font-semibold text-white hover:bg-pink-600">
+                  <Link
+                    to={"/"}
+                    className="btn w-1/2 border-none bg-pink-800 font-semibold text-white hover:bg-pink-600"
+                  >
                     Seguir comprando
                   </Link>
-                  <Link to={'/cart'} className="btn glass border-none w-1/2 bg-green-800 font-semibold text-white hover:bg-green-600">
+                  <Link
+                    to={"/cart"}
+                    className="btn glass w-1/2 border-none bg-green-800 font-semibold text-white hover:bg-green-600"
+                  >
                     Ir al carrito
                   </Link>
                 </div>
-            }
+              )}
+            </div>
           </div>
         </div>
       </div>
