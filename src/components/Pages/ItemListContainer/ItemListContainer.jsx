@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { gFetch } from "../../../../helpers/gFetch";
+import { collection, getDocs, getFirestore } from "firebase/firestore";
 import ItemList from "../../ItemList/ItemList";
 
 const ItemListContainer = ({ greeting }) => {
@@ -9,7 +10,16 @@ const ItemListContainer = ({ greeting }) => {
 
   const { categoryID } = useParams();
 
-  useEffect(() => {
+  useEffect(()=>{
+    const db = getFirestore();
+    const queryCollection = collection(db, 'productos');
+    getDocs(queryCollection)
+    .then(res=>setProductos(res.docs.map(prod => ({ id: prod.id, ...prod.data() }))))
+    .catch((err) => console.log(err))
+    .finally(() => setLoading(false));
+  }, [])
+
+/*   useEffect(() => {
     if (categoryID) {
       gFetch() // simulacion de fetch -> mock
         .then((res) =>
@@ -23,7 +33,7 @@ const ItemListContainer = ({ greeting }) => {
         .catch((err) => console.log(err))
         .finally(() => setLoading(false));
     }
-  }, [categoryID]);
+  }, [categoryID]); */
   
   return (
     <>
