@@ -10,33 +10,41 @@ import {
   where,
   writeBatch,
 } from "firebase/firestore";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { CartContext } from "../../../context/cartContext";
 
 const CarritoPage = () => {
+  const [dataForm, setDataForm] = useState({
+    name: "",
+    phone: "",
+    mail: "",
+  });
   const { cartList, vaciarCarrito, precioTotal } = useContext(CartContext);
 
   const generarOrden = async (e) => {
+    e.preventDefault();
     const orden = {};
 
     orden.buyer = {
-      name: "Jorge",
-      phone: "3434892651",
-      email: "jorge@mail.com",
+      name: dataForm.name,
+      phone: dataForm.phone,
+      mail: dataForm.mail,
     };
 
     orden.items = cartList.map((prod) => {
-      const { id, name: title, price } = prod;
-      return { id, title, price };
+      const { id, name: title, price, cantidad } = prod;
+      return { id, title, price, cantidad };
     });
 
     orden.total = precioTotal();
 
     const db = getFirestore();
-    /* const orders = collection(db, 'orders');
+    //generar order
+    const orders = collection(db, "orders");
     addDoc(orders, orden)
-    .then(res=>console.log(res))
-    .catch(err=>console.log(err)) */
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err))
+      .finally(()=>vaciarCarrito());
 
     //update
     /* const orderDoc = doc(db, 'productos', 'DYIwfRcKG8vOLYJBP5WY');
@@ -48,8 +56,7 @@ const CarritoPage = () => {
 
     //opcional
 
-    
-    //actualizar por lotes    
+    //actualizar por lotes
     /* const queryCollection = collection(db, "productos");
     const queryUpdateStock = await query(
       queryCollection, //  => esto devuelve los id's de cartlist ['asdasdvbdbfgbd', 'kfogbmfopgberp']
@@ -71,8 +78,14 @@ const CarritoPage = () => {
       )
     );
     batch.commit(); */
-
   };
+
+  const handleInputChange=(e)=>{
+    setDataForm({
+      ...dataForm,
+      [e.target.name]: e.target.value
+    });
+  }
 
   return (
     <div className="mx-auto mt-5 w-2/3">
@@ -123,16 +136,24 @@ const CarritoPage = () => {
           >
             Vaciar Carrito
           </button>
-          <div className="flex gap-4 items-center">
-            <p><span className="bg-gray-200 rounded-lg px-2 py-1 text-black font-semibold">Total: ${precioTotal()}</span></p>
-            <button
-              className="btn btn-sm bg-green-800 text-white shadow-xl hover:bg-green-700"
-              onClick={() => generarOrden()}
-            >
+          <div className="flex items-center gap-4">
+            <p>
+              <span className="rounded-lg bg-gray-700 px-2 py-1 font-semibold">
+                Total: ${precioTotal()}
+              </span>
+            </p>
+            <button className="btn btn-sm bg-green-800 text-white shadow-xl hover:bg-green-700">
               Finalizar Compra
             </button>
           </div>
         </div>
+        {/* form datos para order */}
+        <form onSubmit={generarOrden} className="text-black">
+          <input type="text" placeholder="Nombre" name="name" value={dataForm.name} onChange={handleInputChange}/>
+          <input type="text" placeholder="Teléfono" name="phone" value={dataForm.phone} onChange={handleInputChange}/>
+          <input type="mail" placeholder="Email" name="mail" value={dataForm.mail} onChange={handleInputChange}/>
+          <button type="submit">Generar orden</button>
+        </form>
       </div>
     </div>
   );
