@@ -5,8 +5,9 @@ import ItemCount from "../ItemCount/ItemCount";
 
 const ItemDetail = ({ evento }) => {
   const [eventoDetalle = [], setEvento] = useState(evento);
+
   useEffect(() => {
-    setEvento(...evento);
+    setEvento(evento);
   }, [evento]);
 
   const [isCount, setIsCount] = useState(true);
