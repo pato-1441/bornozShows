@@ -3,18 +3,18 @@ import { Link } from "react-router-dom";
 import { CartContext } from "../../context/cartContext";
 import ItemCount from "../ItemCount/ItemCount";
 
-const ItemDetail = ({ evento }) => {
-  const [eventoDetalle = [], setEvento] = useState(evento);
+const ItemDetail = ({ event }) => {
+  const [eventDetail = [], setEvent] = useState(event);
 
   useEffect(() => {
-    setEvento(evento);
-  }, [evento]);
+    setEvent(event);
+  }, [event]);
 
   const [isCount, setIsCount] = useState(true);
   const { addItem } = useContext(CartContext);
 
-  const onAdd = (cantidad) => {
-    addItem({ ...eventoDetalle, cantidad });
+  const onAdd = (quantity) => {
+    addItem({ ...eventDetail, quantity });
     setIsCount(false);
   };
 
@@ -22,33 +22,33 @@ const ItemDetail = ({ evento }) => {
     <div className="w-100 mx-auto mt-10 h-screen w-2/3">
       <div className="flex flex-col gap-10 lg:flex-row">
         <img
-          src={eventoDetalle.image}
+          src={eventDetail.image}
           className="h-fit max-w-xs rounded-lg shadow-xl transition-transform hover:scale-105 sm:max-w-md"
         />
         <div>
-          <h1 className="text-5xl font-bold">{eventoDetalle.name}</h1>
+          <h1 className="text-5xl font-bold">{eventDetail.name}</h1>
           <h2 className="font-base text-lg uppercase">
-            {eventoDetalle.category}
+            {eventDetail.category}
           </h2>
           <p className="py-6 text-sm sm:text-base">
-            {eventoDetalle.description}
+            {eventDetail.description}
           </p>
           <div className="flex flex-col">
             <div>
               <div className="flex justify-between pb-3">
                 <span className="rounded-lg bg-slate-600 p-2 py-3 font-semibold text-white">
-                  ${eventoDetalle.price}
+                  ${eventDetail.price}
                 </span>
                 <span className="rounded-lg bg-slate-600 p-2 py-3 font-semibold text-white">
-                  Disponibles: {eventoDetalle.stock}
+                  Disponibles: {eventDetail.stock}
                 </span>
               </div>
               {isCount ? (
                 <ItemCount
                   onAdd={onAdd}
-                  stock={eventoDetalle.stock}
+                  stock={eventDetail.stock}
                   init={1}
-                  eventoDetalle={eventoDetalle}
+                  eventDetail={eventDetail}
                 />
               ) : (
                 <div className="flex gap-2">

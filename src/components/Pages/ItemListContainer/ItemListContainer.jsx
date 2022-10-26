@@ -4,13 +4,13 @@ import bringProducts from "../../../../helpers/bringProducts";
 import ItemList from "../../ItemList/ItemList";
 
 const ItemListContainer = ({ greeting }) => {
-  const [productos, setProductos] = useState([]);
+  const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
 
   const { categoryID } = useParams();
 
   useEffect(() => {
-    bringProducts(setProductos, setLoading, categoryID);
+    bringProducts(setProducts, setLoading, categoryID);
   }, [categoryID]);
 
   return (
@@ -22,7 +22,7 @@ const ItemListContainer = ({ greeting }) => {
             Cargando
           </button>
         ) : (
-          <ItemList productos={productos} />
+          <ItemList products={products} />
         )}
       </div>
     </>

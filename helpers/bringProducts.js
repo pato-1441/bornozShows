@@ -6,7 +6,7 @@ import {
   getDocs,
 } from "firebase/firestore";
 
-const bringProducts = (setProductos, setLoading, categoryID) => {
+const bringProducts = (setProducts, setLoading, categoryID) => {
   const db = getFirestore();
   const queryCollection = collection(db, "productos");
   const queryFiltered = categoryID
@@ -15,7 +15,7 @@ const bringProducts = (setProductos, setLoading, categoryID) => {
 
   getDocs(queryFiltered)
     .then((res) =>
-      setProductos(res.docs.map((prod) => ({ id: prod.id, ...prod.data() })))
+      setProducts(res.docs.map((prod) => ({ id: prod.id, ...prod.data() })))
     )
     .catch((err) => console.log(err))
     .finally(() => setLoading(false));

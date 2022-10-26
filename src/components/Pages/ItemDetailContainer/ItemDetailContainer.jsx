@@ -1,36 +1,19 @@
-import {
-  doc,
-  getDoc,
-  getFirestore,
-} from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+
 import ItemDetail from "../../ItemDetail/ItemDetail";
 
+import bringProduct from "../../../../helpers/bringProduct";
+
 const ItemDetailContainer = () => {
-  const [evento, setEvento] = useState([]);
+  const [event, setEvent] = useState([]);
   const [loading, setLoading] = useState(true);
 
   const { eventID } = useParams();
 
   useEffect(() => {
-    const db = getFirestore();
-    const queryDoc = doc(db, "productos", eventID);
-
-    getDoc(queryDoc)
-      .then(res => setEvento({ id: res.id, ...res.data() }))
-      .catch((err) => console.log(err))
-      .finally(() => setLoading(false));
+    bringProduct(setEvent, setLoading, eventID);
   }, []);
-
-  /* useEffect(() => {
-    if (eventID) {
-      gFetch(eventID) // simulacion de fetch -> mock
-        .then((res) => setEvento(res))
-        .catch((err) => console.log(err))
-        .finally(() => setLoading(false));
-    }
-  }, [eventID]); */
 
   return (
     <>
@@ -42,7 +25,7 @@ const ItemDetailContainer = () => {
         </div>
       ) : (
         <div>
-          <ItemDetail evento={evento} />
+          <ItemDetail event={event} />
         </div>
       )}
     </>
