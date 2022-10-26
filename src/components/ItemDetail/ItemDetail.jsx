@@ -13,8 +13,8 @@ const ItemDetail = ({ event }) => {
   const [isCount, setIsCount] = useState(true);
   const { addItem } = useContext(CartContext);
 
-  const onAdd = (quantity) => {
-    addItem({ ...eventDetail, quantity });
+  const onAdd = (cantidad) => {
+    addItem({ ...eventDetail, cantidad });
     setIsCount(false);
   };
 

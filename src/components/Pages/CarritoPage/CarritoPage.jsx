@@ -10,7 +10,7 @@ import {
   where,
   writeBatch,
 } from "firebase/firestore";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { CartContext } from "../../../context/cartContext";
 
 const CarritoPage = () => {
@@ -19,7 +19,7 @@ const CarritoPage = () => {
     phone: "",
     mail: "",
   });
-  const { cartList, vaciarCarrito, precioTotal } = useContext(CartContext);
+  const { cartList, emptyCart, totalPrice } = useContext(CartContext);
 
   const generarOrden = async (e) => {
     e.preventDefault();
@@ -36,7 +36,7 @@ const CarritoPage = () => {
       return { id, title, price, cantidad };
     });
 
-    orden.total = precioTotal();
+    orden.total = totalPrice();
 
     const db = getFirestore();
     //generar order
@@ -44,7 +44,7 @@ const CarritoPage = () => {
     addDoc(orders, orden)
       .then((res) => console.log(res))
       .catch((err) => console.log(err))
-      .finally(()=>vaciarCarrito());
+      .finally(()=>emptyCart());
 
     //update
     /* const orderDoc = doc(db, 'productos', 'DYIwfRcKG8vOLYJBP5WY');
@@ -110,15 +110,15 @@ const CarritoPage = () => {
                 <td></td>
               </tr>
             ) : (
-              cartList.map((evento) => (
-                <tr key={evento.id}>
-                  <th>{evento.stock}</th>
-                  <td>{evento.name}</td>
-                  <td className="capitalize">{evento.category}</td>
-                  <td className="capitalize">{evento.cantidad}</td>
+              cartList.map((event) => (
+                <tr key={event.id}>
+                  <th>{event.stock}</th>
+                  <td>{event.name}</td>
+                  <td className="capitalize">{event.category}</td>
+                  <td className="capitalize">{event.cantidad}</td>
                   <td>
                     <span className="rounded-box bg-gray-800 px-2 py-1 text-white">
-                      ${evento.price * evento.cantidad}
+                      ${event.price * event.cantidad}
                     </span>
                   </td>
                 </tr>
@@ -132,14 +132,14 @@ const CarritoPage = () => {
         <div className="flex flex-col justify-between gap-y-2 sm:flex-row">
           <button
             className="btn glass btn-sm text-white shadow-xl"
-            onClick={() => vaciarCarrito()}
+            onClick={() => emptyCart()}
           >
             Vaciar Carrito
           </button>
           <div className="flex items-center gap-4">
             <p>
               <span className="rounded-lg bg-gray-700 px-2 py-1 font-semibold">
-                Total: ${precioTotal()}
+                Total: ${totalPrice()}
               </span>
             </p>
             <button className="btn btn-sm bg-green-800 text-white shadow-xl hover:bg-green-700">
