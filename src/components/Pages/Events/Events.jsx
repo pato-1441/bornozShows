@@ -1,9 +1,9 @@
 import React from 'react'
 
-const Eventos = () => {
+const Events = () => {
   return (
     <div>Eventos</div>
   )
 }
 
-export default Eventos
+export default Events

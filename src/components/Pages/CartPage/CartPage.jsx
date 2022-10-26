@@ -13,7 +13,7 @@ import {
 import { useContext, useState } from "react";
 import { CartContext } from "../../../context/cartContext";
 
-const CarritoPage = () => {
+const CartPage = () => {
   const [dataForm, setDataForm] = useState({
     name: "",
     phone: "",
@@ -159,4 +159,4 @@ const CarritoPage = () => {
   );
 };
 
-export default CarritoPage;
+export default CartPage;
