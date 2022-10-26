@@ -18,55 +18,17 @@ const ItemListContainer = ({ greeting }) => {
   useEffect(() => {
     const db = getFirestore();
     const queryCollection = collection(db, "productos");
+    const queryFiltered = categoryID
+      ? query(queryCollection, where("category", "==", categoryID))
+      : queryCollection;
 
-    if (categoryID) {
-      const queryFilter = query(
-        queryCollection,
-        where("category", "==", categoryID)
-      );
-      getDocs(queryFilter)
-        .then((res) =>
-          setProductos(res.docs.map((prod) => ({ id: prod.id, ...prod.data() })))
-        )
-        .catch((err) => console.log(err))
-        .finally(() => setLoading(false));
-    } else {
-      getDocs(queryCollection)
-        .then((res) =>
-          setProductos(
-            res.docs.map((prod) => ({ id: prod.id, ...prod.data() }))
-          )
-        )
-        .catch((err) => console.log(err))
-        .finally(() => setLoading(false));
-    }
+    getDocs(queryFiltered)
+      .then((res) =>
+        setProductos(res.docs.map((prod) => ({ id: prod.id, ...prod.data() })))
+      )
+      .catch((err) => console.log(err))
+      .finally(() => setLoading(false));
   }, [categoryID]);
-
-  /* useEffect(()=>{
-    const db = getFirestore();
-    const queryDoc = doc(db, 'productos', 'DYIwfRcKG8vOLYJBP5WY');
-    getDoc(queryDoc)
-    .then((res) =>
-     console.log({id: res.id, ...res.data()}))
-    .catch((err) => console.log(err))
-    .finally(() => setLoading(false));
-  },[]); */
-
-  /*   useEffect(() => {
-    if (categoryID) {
-      gFetch() // simulacion de fetch -> mock
-        .then((res) =>
-          setProductos(res.filter((prod) => prod.category === categoryID))
-        )
-        .catch((err) => console.log(err))
-        .finally(() => setLoading(false));
-    } else {
-      gFetch() // simulacion de fetch -> mock
-        .then((res) => setProductos(res))
-        .catch((err) => console.log(err))
-        .finally(() => setLoading(false));
-    }
-  }, [categoryID]); */
 
   return (
     <>
