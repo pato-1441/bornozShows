@@ -21,27 +21,27 @@ const CartPage = () => {
   });
   const { cartList, emptyCart, totalPrice } = useContext(CartContext);
 
-  const generarOrden = async (e) => {
+  const generateOrder = async (e) => {
     e.preventDefault();
-    const orden = {};
+    const order = {};
 
-    orden.buyer = {
+    order.buyer = {
       name: dataForm.name,
       phone: dataForm.phone,
       mail: dataForm.mail,
     };
 
-    orden.items = cartList.map((prod) => {
+    order.items = cartList.map((prod) => {
       const { id, name: title, price, cantidad } = prod;
       return { id, title, price, cantidad };
     });
-
-    orden.total = totalPrice();
+    
+    order.total = totalPrice();
 
     const db = getFirestore();
     //generar order
     const orders = collection(db, "orders");
-    addDoc(orders, orden)
+    addDoc(orders, order)
       .then((res) => console.log(res))
       .catch((err) => console.log(err))
       .finally(()=>emptyCart());
@@ -148,7 +148,7 @@ const CartPage = () => {
           </div>
         </div>
         {/* form datos para order */}
-        <form onSubmit={generarOrden} className="text-black">
+        <form onSubmit={generateOrder} className="text-black">
           <input type="text" placeholder="Nombre" name="name" value={dataForm.name} onChange={handleInputChange}/>
           <input type="text" placeholder="Teléfono" name="phone" value={dataForm.phone} onChange={handleInputChange}/>
           <input type="mail" placeholder="Email" name="mail" value={dataForm.mail} onChange={handleInputChange}/>
