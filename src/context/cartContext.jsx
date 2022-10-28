@@ -1,40 +1,51 @@
-import { createContext, useState } from "react"
+import { createContext, useState } from "react";
 
-const CartContext = createContext([])
+const CartContext = createContext([]);
 
-export {CartContext}
+export { CartContext };
 
-const CartContextProvider = ({children}) => {
+const CartContextProvider = ({ children }) => {
+  const [cartList, setCartList] = useState([]);
 
-    const [cartList, setCartList] = useState([])
+  const addItem = (product) => {
+    const index = cartList.findIndex((prod) => product.id === prod.id);
 
-    const addItem = (product) => {
-        setCartList( [...cartList, product] )
+    if (index === -1) {
+      setCartList([...cartList, product]);
+    } else {
+      cartList[index].cantidad += product.cantidad;
+      setCartList([...cartList]);
     }
+  };
 
-    const totalPrice = () => {
-        return cartList.reduce((acum, prod) => acum + (prod.cantidad * prod.price) , 0)
-    }
+  const totalPrice = () => {
+    return cartList.reduce(
+      (acum, prod) => acum + prod.cantidad * prod.price,
+      0
+    );
+  };
 
-    const totalQuantity = () => {
-        return cartList.reduce((acum, prod) => acum += prod.cantidad , 0)// acum = acum + cantidad
-    }
+  const totalQuantity = () => {
+    return cartList.reduce((acum, prod) => (acum += prod.cantidad), 0); // acum = acum + cantidad
+  };
 
-    const emptyCart = () => {
-        setCartList([])
-    }
+  const emptyCart = () => {
+    setCartList([]);
+  };
 
-    return (
-    <CartContext.Provider value={{
+  return (
+    <CartContext.Provider
+      value={{
         cartList,
         addItem,
         totalPrice,
         totalQuantity,
-        emptyCart
-    }}>
-        {children}
+        emptyCart,
+      }}
+    >
+      {children}
     </CartContext.Provider>
-    )
-}
+  );
+};
 
-export default CartContextProvider
+export default CartContextProvider;
