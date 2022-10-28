@@ -52,7 +52,7 @@ const CartPage = () => {
     batch.commit(); */
 
   return (
-    <div className="mx-auto mt-5 flex w-3/4 gap-4">
+    <div className="mx-auto mt-5 flex gap-8">
       <CartTableList
         cartList={cartList}
         emptyCart={emptyCart}

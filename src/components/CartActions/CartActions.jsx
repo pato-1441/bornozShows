@@ -50,6 +50,7 @@ const CartActions = ({ cartList }) => {
   return (
     <div>      
       <div>
+        <h2 className="text-2xl pb-4">Terminar compra</h2>
         <form onSubmit={generateOrder}>
           <div className="form-control gap-2">
             <label className="input-group">
@@ -90,7 +91,7 @@ const CartActions = ({ cartList }) => {
             </label>
           </div>
           <button
-            className="btn glass mt-2 border-none bg-yellow-800 font-semibold text-white hover:bg-yellow-600"
+            className="btn glass mt-4 border-none bg-yellow-800 font-semibold text-white hover:bg-yellow-600"
             type="submit"
           >
             Finalizar compra
