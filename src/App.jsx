@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar";
 import ItemListContainer from "./components/Pages/ItemListContainer/ItemListContainer";
 import ItemDetailContainer from "./components/Pages/ItemDetailContainer/ItemDetailContainer";
-import CartPage from "./components/Pages/CartPage/CartPage";
+import CartPageContainer from "./components/Pages/CartPageContainer/CartPageContainer";
 import Events from "./components/Pages/Events/Events";
 import NotFound from "./components/404NotFound/404NotFound";
 import CartContextProvider from "./context/cartContext";
@@ -28,7 +28,7 @@ const App = () => {
                 path="/detail/:eventID"
                 element={<ItemDetailContainer />}
               />
-              <Route path="/cart" element={<CartPage />} />
+              <Route path="/cart" element={<CartPageContainer />} />
               <Route path="/events" element={<Events />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
