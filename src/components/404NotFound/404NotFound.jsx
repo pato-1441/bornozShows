@@ -3,8 +3,8 @@ import bornozTicketsLogo from "/assets/bornozTickets.png";
 
 const NotFound = () => {
   return (
-    <div className="mt-20 flex w-full items-center justify-center gap-20">
-      <div className="flex flex-col gap-5">
+    <div className="mt-20 flex flex-col sm:flex-row w-full items-center justify-center gap-20">
+      <div className="flex flex-col gap-5 items-center text-center sm:items-start">
         <div className="w-32">
           <img
             className="w-full"
@@ -12,7 +12,7 @@ const NotFound = () => {
             alt="Logo de Bornoz Tickets"
           />
         </div>
-        <p className="text-7xl font-semibold">404. Not found</p>
+        <p className="text-5xl sm:text-7xl font-semibold">404. Not found</p>
         <div>
           <p className="text-7xl font-light"></p>
           <p className="text-4xl font-light">
