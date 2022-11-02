@@ -16,7 +16,7 @@ import CartActions from "../../CartActions/CartActions";
 import CartTableList from "../../CartTableList/CartTableList";
 
 const CartPage = () => {
-  const { cartList, emptyCart, totalPrice } = useContext(CartContext);
+  const { cartList, emptyCart, totalPrice, removeItem } = useContext(CartContext);
 
   //update
   /* const orderDoc = doc(db, 'productos', 'DYIwfRcKG8vOLYJBP5WY');
@@ -52,13 +52,16 @@ const CartPage = () => {
     batch.commit(); */
 
   return (
-    <div className="mx-auto mt-5 flex gap-8">
-      <CartTableList
-        cartList={cartList}
-        emptyCart={emptyCart}
-        totalPrice={totalPrice}
-      />
-      <CartActions cartList={cartList} />
+    <div className="w-full flex justify-center mt-10 text-xl">
+      <div className="flex gap-8">
+        <CartTableList
+          cartList={cartList}
+          emptyCart={emptyCart}
+          totalPrice={totalPrice}
+          removeItem={removeItem}
+        />
+        <CartActions cartList={cartList} totalPrice={totalPrice} emptyCart={emptyCart} />
+      </div>
     </div>
   );
 };

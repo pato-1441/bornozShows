@@ -1,7 +1,7 @@
 import { addDoc, collection, getFirestore } from "firebase/firestore";
 import { useState } from "react";
 
-const CartActions = ({ cartList }) => {
+const CartActions = ({ cartList, totalPrice, emptyCart }) => {
   const [dataForm, setDataForm] = useState({
     name: "",
     phone: "",
@@ -80,7 +80,7 @@ const CartActions = ({ cartList }) => {
             <label className="input-group">
               <span>Telefono</span>
               <input
-                type="text"
+                type="number"
                 placeholder="Telefono"
                 name="phone"
                 value={dataForm.phone}
