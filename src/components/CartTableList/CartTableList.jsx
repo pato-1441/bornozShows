@@ -43,7 +43,7 @@ const CartTableList = ({ cartList, emptyCart, totalPrice, removeItem }) => {
           <tbody>
             {cartList.length === 0 ? (
               <tr>
-                <th>Su carrito se encuentra vacío</th>
+                <td>Su carrito se encuentra vacío</td>
                 <td></td>
                 <td></td>
                 <td></td>
