@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 const Item = ({ prod }) => {
   return (
     <div className="sm:m-6">
-      <div className="card-compact card w-60 bg-slate-900 shadow-xl transition-transform hover:scale-105">
+      <div className="card-compact card w-full bg-slate-900 shadow-xl transition-transform hover:scale-105">
         <Link to={`/detail/${prod.id}`}>
           <figure>
             <img src={prod.image} />
@@ -16,7 +16,7 @@ const Item = ({ prod }) => {
               </span>
             </h2>
           </div>
-          <div className="flex flex-row justify-between px-4 text-sm">
+          <div className="flex flex-row px-4 text-sm">
             {prod.description}
           </div>
           <div className="card-body flex flex-col justify-between">
