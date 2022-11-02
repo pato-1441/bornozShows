@@ -9,14 +9,14 @@ const Item = ({ prod }) => {
             <img src={prod.image} />
           </figure>
           <div className="card-body flex flex-row justify-between">
-            <h2 className="card-title">
+            <h2 className="card-title text-2xl">
               {prod.name}
-              <span className="badge badge-sm border-none bg-slate-700 uppercase text-white">
+              <span className="badge badge-md border-none bg-slate-700 uppercase text-white">
                 {prod.category}
               </span>
             </h2>
           </div>
-          <div className="flex flex-row px-4 text-sm">
+          <div className="flex flex-row px-4 text-base">
             {prod.description}
           </div>
           <div className="card-body flex flex-col justify-between">
