@@ -12,7 +12,7 @@ const App = () => {
   return (
     <CartContextProvider>
       <BrowserRouter>
-        <div className="container-fluid h-fit bg-slate-800 pb-10">
+        <div className="container-fluid min-h-screen bg-slate-800 pb-10">
           <div className="flex flex-col bg-slate-800 text-white">
             <Navbar />
             <Routes>

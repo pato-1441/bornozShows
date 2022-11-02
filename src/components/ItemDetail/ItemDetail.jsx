@@ -19,7 +19,7 @@ const ItemDetail = ({ event }) => {
   };
 
   return (
-    <div className="w-100 mx-auto mt-10 h-screen w-2/3">
+    <div className="w-100 mx-auto mt-10 w-2/3">
       <div className="flex flex-col gap-10 lg:flex-row">
         <img
           src={eventDetail.image}
