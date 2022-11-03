@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 import ItemDetail from "../../ItemDetail/ItemDetail";
 
@@ -16,7 +16,7 @@ const ItemDetailContainer = () => {
   }, []);
 
   return (
-    <>
+    <div>
       {loading ? (
         <div className="rounded-box mx-auto mt-10 grid w-2/3 bg-gray-700">
           <button className="btn loading col-span-3 border-none bg-inherit text-white">
@@ -28,7 +28,7 @@ const ItemDetailContainer = () => {
           <ItemDetail event={event} />
         </div>
       )}
-    </>
+    </div>
   );
 };
 

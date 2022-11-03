@@ -21,18 +21,34 @@ const ItemDetail = ({ event }) => {
   return (
     <div className="w-100 mx-auto mt-10 w-2/3">
       <div className="flex flex-col gap-10 lg:flex-row">
-        <img
-          src={eventDetail.image}
-          className="h-fit max-w-xs rounded-lg shadow-xl transition-transform hover:scale-105 sm:max-w-md"
-        />
+        <div className="flex flex-col gap-6">          
+          <Link to="/" className="btn bg-base-100 border-none text-white shadow-xl w-12">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={2}
+              stroke="currentColor"
+              className="h-4 w-4"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"
+              />
+            </svg>
+          </Link>
+          <img
+            src={eventDetail.image}
+            className="h-fit max-w-xs rounded-lg shadow-xl transition-transform hover:scale-105 sm:max-w-md"
+          />
+        </div>
         <div>
           <h1 className="text-5xl font-bold">{eventDetail.name}</h1>
           <h2 className="font-base text-lg uppercase">
             {eventDetail.category}
           </h2>
-          <p className="py-6 text-sm sm:text-base">
-            {eventDetail.description}
-          </p>
+          <p className="py-6 text-sm sm:text-base">{eventDetail.description}</p>
           <div className="flex flex-col">
             <div>
               <div className="flex justify-between pb-3">
