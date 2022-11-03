@@ -5,6 +5,12 @@ import CartWidget from "../CartWidget/CartWidget";
 
 import bornozTicketsLogo from "/assets/bornozTickets.png";
 
+let menus = [
+  { id: "1", categoryID: "general", nombre: "General" },
+  { id: "2", categoryID: "platea", nombre: "Platea" },
+  { id: "3", categoryID: "vip", nombre: "VIP" },
+];
+
 const NavBar = () => {
   return (
     <div>
@@ -16,9 +22,11 @@ const NavBar = () => {
         </div>
         <div className="flex-none">
           <ul className="menu menu-horizontal p-0 text-xl">
-            <Link className="mr-5" to="/category/general">General</Link>
-            <Link className="mr-5" to="/category/platea">Platea</Link>
-            <Link className="mr-3" to="/category/vip">VIP</Link>
+            {menus.map((menu) => (
+              <Link className="mr-5" to={`/category/${menu.categoryID}`}>
+                {menu.nombre}
+              </Link>
+            ))}
           </ul>
         </div>
         <CartWidget />

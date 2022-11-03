@@ -7,6 +7,8 @@ export { CartContext };
 const CartContextProvider = ({ children }) => {
   const [cartList, setCartList] = useState([]);
 
+  localStorage.setItem('cartlist', JSON.stringify(cartList));
+
   const addItem = (product) => {
     const index = cartList.findIndex((prod) => product.id === prod.id);
 
@@ -19,8 +21,7 @@ const CartContextProvider = ({ children }) => {
   };
 
   const removeItem = (id) => {
-    const filteredItems = cartList.filter((prod) => prod.id !== id);
-    setCartList([...filteredItems]);
+    setCartList(cartList.filter((prod) => prod.id !== id));
   };
 
   const totalPrice = () => {
