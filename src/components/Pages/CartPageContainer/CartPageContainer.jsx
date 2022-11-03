@@ -7,8 +7,8 @@ const CartPage = () => {
   const { cartList, emptyCart, totalPrice, removeItem } = useContext(CartContext);
 
   return (
-    <div className="w-full flex justify-center mt-10 text-xl">
-      <div className="flex gap-8">
+    <div className="w-full flex flex-col sm:flex-row justify-center mt-10 text-xl">
+      <div className="flex flex-col sm:flex-row gap-8">
         <CartTableList
           cartList={cartList}
           emptyCart={emptyCart}
