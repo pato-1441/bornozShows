@@ -2,6 +2,8 @@ import { addDoc, collection, getFirestore } from "firebase/firestore";
 import { useState } from "react";
 
 const CartActions = ({ cartList, totalPrice, emptyCart }) => {
+  const [orderId, setOrderId] = useState("");
+
   const [dataForm, setDataForm] = useState({
     name: "",
     phone: "",
@@ -35,7 +37,7 @@ const CartActions = ({ cartList, totalPrice, emptyCart }) => {
     //generar order
     const orders = collection(db, "orders");
     addDoc(orders, order)
-      .then((res) => console.log(res))
+      .then((res) => setOrderId(res.id))
       .catch((err) => console.log(err))
       .finally(() => emptyCart());
   };
@@ -48,9 +50,9 @@ const CartActions = ({ cartList, totalPrice, emptyCart }) => {
   };
 
   return (
-    <div>      
+    <div>
       <div>
-        <h2 className="text-2xl pb-4">Terminar compra</h2>
+        <h2 className="pb-4 text-2xl">Terminar compra</h2>
         <form onSubmit={generateOrder}>
           <div className="form-control gap-2">
             <label className="input-group">
@@ -97,6 +99,32 @@ const CartActions = ({ cartList, totalPrice, emptyCart }) => {
             Finalizar compra
           </button>
         </form>
+      </div>
+      <div>
+        {orderId && (
+          <div className="card mt-5 w-96 bg-green-500 shadow-xl">
+            <figure className="mt-6">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="h-16 w-16"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
+              </svg>
+            </figure>
+            <div className="card-body">
+              <h2 className="card-title">¡Felicitaciones!</h2>
+              <p>Su orden fue generada con exito: {orderId}</p>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
