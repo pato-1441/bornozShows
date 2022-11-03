@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import Navbar from "./components/Navbar/Navbar";
+import NavBar from "./components/Navbar/Navbar";
 import ItemListContainer from "./components/Pages/ItemListContainer/ItemListContainer";
 import ItemDetailContainer from "./components/Pages/ItemDetailContainer/ItemDetailContainer";
 import CartPageContainer from "./components/Pages/CartPageContainer/CartPageContainer";
@@ -14,7 +14,7 @@ const App = () => {
       <BrowserRouter>
         <div className="container-fluid min-h-screen bg-slate-800 pb-10">
           <div className="flex flex-col bg-slate-800 text-white">
-            <Navbar />
+            <NavBar />
             <Routes>
               <Route
                 path="/"
