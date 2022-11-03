@@ -1,4 +1,13 @@
-import { addDoc, collection, getFirestore } from "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  documentId,
+  getDocs,
+  getFirestore,
+  query,
+  where,
+  writeBatch,
+} from "firebase/firestore";
 import { useState } from "react";
 
 const CartActions = ({ cartList, totalPrice, emptyCart }) => {
@@ -7,7 +16,7 @@ const CartActions = ({ cartList, totalPrice, emptyCart }) => {
   const [dataForm, setDataForm] = useState({
     name: "",
     phone: "",
-    mail: ""
+    mail: "",
   });
 
   const generateOrder = async (e) => {
@@ -17,7 +26,7 @@ const CartActions = ({ cartList, totalPrice, emptyCart }) => {
     order.buyer = {
       name: dataForm.name,
       phone: dataForm.phone,
-      mail: dataForm.mail
+      mail: dataForm.mail,
     };
 
     order.date = new Date();
@@ -42,6 +51,28 @@ const CartActions = ({ cartList, totalPrice, emptyCart }) => {
       .then((res) => setOrderId(res.id))
       .catch((err) => console.log(err))
       .finally(() => emptyCart());
+
+    const queryCollection = collection(db, "productos");
+    const queryUpdateStock = await query(
+      queryCollection, //  => esto devuelve los id's de cartlist ['asdasdvbdbfgbd', 'kfogbmfopgberp']
+      where(
+        documentId(),
+        "in",
+        cartList.map((prod) => prod.id)
+      )
+    );
+
+    const batch = writeBatch(db);
+    await getDocs(queryUpdateStock).then((resp) =>
+      resp.docs.forEach((res) =>
+        batch.update(res.ref, {
+          stock:
+            res.data().stock -
+            cartList.find((item) => item.id === res.id).cantidad,
+        })
+      )
+    );
+    batch.commit();
   };
 
   const handleInputChange = (e) => {
@@ -104,7 +135,7 @@ const CartActions = ({ cartList, totalPrice, emptyCart }) => {
       </div>
       <div>
         {orderId && (
-          <div className="card mt-5 w-80 bg-green-600 shadow-xl text-white">
+          <div className="card mt-5 w-80 bg-green-600 text-white shadow-xl">
             <figure className="mt-6">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
