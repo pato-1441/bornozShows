@@ -23,7 +23,7 @@ const NavBar = () => {
         <div className="flex-none">
           <ul className="menu menu-horizontal p-0 text-xl">
             {menus.map((menu) => (
-              <Link className="mr-5" to={`/category/${menu.categoryID}`}>
+              <Link key={menu.id} className="mr-5" to={`/category/${menu.categoryID}`}>
                 {menu.nombre}
               </Link>
             ))}

@@ -7,7 +7,7 @@ const CartActions = ({ cartList, totalPrice, emptyCart }) => {
   const [dataForm, setDataForm] = useState({
     name: "",
     phone: "",
-    mail: "",
+    mail: ""
   });
 
   const generateOrder = async (e) => {
@@ -17,8 +17,10 @@ const CartActions = ({ cartList, totalPrice, emptyCart }) => {
     order.buyer = {
       name: dataForm.name,
       phone: dataForm.phone,
-      mail: dataForm.mail,
+      mail: dataForm.mail
     };
+
+    order.date = new Date();
 
     order.items = cartList.map((prod) => {
       const { id, name: title, price, cantidad } = prod;
@@ -102,7 +104,7 @@ const CartActions = ({ cartList, totalPrice, emptyCart }) => {
       </div>
       <div>
         {orderId && (
-          <div className="card mt-5 w-96 bg-green-500 shadow-xl">
+          <div className="card mt-5 w-80 bg-green-600 shadow-xl text-white">
             <figure className="mt-6">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
