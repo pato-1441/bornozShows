@@ -133,7 +133,7 @@ const CartActions = ({ cartList, totalPrice, emptyCart }) => {
           </button>
         </form>
       </div>
-      <div>
+      <div className="flex flex-col items-center">
         {orderId && (
           <div className="card mt-5 w-80 bg-green-600 text-white shadow-xl">
             <figure className="mt-6">
@@ -154,7 +154,7 @@ const CartActions = ({ cartList, totalPrice, emptyCart }) => {
             </figure>
             <div className="card-body">
               <h2 className="card-title">¡Felicitaciones!</h2>
-              <p>Su orden fue generada con exito: {orderId}</p>
+              <p className="text-lg">Su orden fue generada con exito: {orderId}</p>
             </div>
           </div>
         )}

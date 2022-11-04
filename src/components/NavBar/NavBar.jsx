@@ -16,12 +16,12 @@ const NavBar = () => {
     <div>
       <div className="navbar bg-base-100">
         <div className="flex-1">
-          <Link to="/" className="btn btn-ghost text-xl normal-case">
+          <Link to="/" className="btn btn-ghost normal-case">
             <img src={bornozTicketsLogo} className="w-16" />
           </Link>
         </div>
         <div className="flex-none">
-          <ul className="menu menu-horizontal p-0 text-xl">
+          <ul className="menu menu-horizontal p-0 text-lg sm:text-xl">
             {menus.map((menu) => (
               <Link key={menu.id} className="mr-5" to={`/category/${menu.categoryID}`}>
                 {menu.nombre}
