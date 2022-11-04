@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 const CartTableList = ({ cartList, emptyCart, totalPrice, removeItem }) => {
   return (
     <div className="overflow-x">
-      <div className="mb-4 flex items-center justify-between">
+      <div className="mb-4 flex items-center justify-between px-4 sm:px-0">
         <Link to="/" className="btn glass btn-sm text-white shadow-xl">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -31,27 +31,31 @@ const CartTableList = ({ cartList, emptyCart, totalPrice, removeItem }) => {
         )}
       </div>
       <div>
-        <div className="flex sm:hidden">
+        <div className="flex flex-col gap-4 sm:hidden">
           {cartList.length === 0 ? (
-            <div className="rounded-box mx-4 w-full bg-base-100 p-4">
+            <div className="rounded-box m-4 bg-base-100 p-4 text-base font-light">
               Su carrito se encuentra vacío
             </div>
           ) : (
             cartList.map((event) => (
-              <div className="px-4 w-full">
-                <div
-                  key={event.id}
-                  className="card card-side bg-base-100 shadow-xl"
-                >
+              <div className="w-full px-4" key={event.id}>
+                <div className="card card-compact bg-gray-900 shadow-xl">
                   <div className="card-body">
-                    <h2 className="card-title">{event.name}</h2>
-                    <p>
-                      <span className="rounded-lg bg-gray-600 px-2 py-1">
-                        {event.cantidad}u.
+                    <h2 className="card-title">
+                      {event.name}{" "}
+                      <span className="badge capitalize text-white">
+                        {event.category}
                       </span>
-                    </p>
-                    <div className="bg-blue-400">
-                      ${event.price * event.cantidad}
+                    </h2>
+                    <div className="mt-4 flex justify-between">
+                      <p>
+                        <span className="rounded-lg bg-gray-600 px-2 py-1">
+                          {event.cantidad}u.
+                        </span>
+                      </p>
+                      <div className="flex items-center rounded-lg bg-gradient-to-tr from-blue-900 to-blue-500 px-2 py-1 font-semibold">
+                        ${event.price * event.cantidad}
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -87,9 +91,9 @@ const CartTableList = ({ cartList, emptyCart, totalPrice, removeItem }) => {
                     <td>{event.stock}</td>
                     <td>{event.name}</td>
                     <td className="capitalize">{event.category}</td>
-                    <td className="capitalize">{event.cantidad}</td>
+                    <td>{event.cantidad}u.</td>
                     <td>
-                      <span className="rounded-box bg-gray-800 px-2 py-1 text-white">
+                      <span className="rounded-lg bg-gradient-to-tr from-blue-900 font-semibold to-blue-500 px-2 py-1 text-white">
                         ${event.price * event.cantidad}
                       </span>
                     </td>
@@ -122,7 +126,7 @@ const CartTableList = ({ cartList, emptyCart, totalPrice, removeItem }) => {
         </div>
         <div className="mt-4 flex flex-col justify-between gap-y-2 sm:flex-row">
           {cartList.length !== 0 && (
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-4 px-4 sm:px-0">
               <span className="rounded-lg bg-gray-700 px-2 py-1 font-semibold">
                 Total: ${totalPrice()}
               </span>

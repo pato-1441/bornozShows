@@ -84,12 +84,12 @@ const CartActions = ({ cartList, totalPrice, emptyCart }) => {
 
   return (
     <div>
-      <div>
+      <div className="px-4 sm:px-0">
         <h2 className="pb-4 text-2xl">Terminar compra</h2>
         <form onSubmit={generateOrder}>
           <div className="form-control gap-2">
             <label className="input-group">
-              <span>Nombre</span>
+              <span className="text-base">Nombre</span>
               <input
                 type="text"
                 placeholder="Nombre completo"
@@ -101,7 +101,7 @@ const CartActions = ({ cartList, totalPrice, emptyCart }) => {
               />
             </label>
             <label className="input-group">
-              <span>Email</span>
+              <span className="text-base">Email</span>
               <input
                 type="mail"
                 placeholder="john@doe.com"
@@ -113,7 +113,7 @@ const CartActions = ({ cartList, totalPrice, emptyCart }) => {
               />
             </label>
             <label className="input-group">
-              <span>Telefono</span>
+              <span className="text-base">Telefono</span>
               <input
                 type="number"
                 placeholder="Telefono"
