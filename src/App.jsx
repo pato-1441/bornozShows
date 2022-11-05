@@ -18,11 +18,11 @@ const App = () => {
             <Routes>
               <Route
                 path="/"
-                element={<ItemListContainer greeting={"Bornoz Events"} />}
+                element={<ItemListContainer greeting={"Bornoz Shows"} />}
               />
               <Route
                 path="/category/:categoryID"
-                element={<ItemListContainer greeting={"Bornoz Events"} />}
+                element={<ItemListContainer greeting={"Bornoz Shows"} />}
               />
               <Route
                 path="/detail/:eventID"
