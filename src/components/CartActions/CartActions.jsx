@@ -17,62 +17,112 @@ const CartActions = ({ cartList, totalPrice, emptyCart }) => {
     name: "",
     phone: "",
     mail: "",
+    mailconfirm: "",
   });
 
   const generateOrder = async (e) => {
+    const mailsInput = document.getElementsByClassName("mail");
+    const tooltipMail = document.getElementById("tooltipMail");
     e.preventDefault();
-    const order = {};
 
-    order.buyer = {
-      name: dataForm.name,
-      phone: dataForm.phone,
-      mail: dataForm.mail,
-    };
+    if (dataForm.mail == dataForm.mailconfirm) {
+      const order = {};
 
-    order.date = new Date();
+      order.buyer = {
+        name: dataForm.name,
+        phone: dataForm.phone,
+        mail: dataForm.mail,
+      };
 
-    order.items = cartList.map((prod) => {
-      const { id, name: title, price, cantidad } = prod;
-      return { id, title, price, cantidad };
-    });
+      order.date = new Date();
 
-    order.total = totalPrice();
+      order.items = cartList.map((prod) => {
+        const { id, name: title, price, cantidad } = prod;
+        return { id, title, price, cantidad };
+      });
 
-    setDataForm({
-      name: "",
-      phone: "",
-      mail: "",
-    });
+      order.total = totalPrice();
 
-    const db = getFirestore();
-    //generar order
-    const orders = collection(db, "orders");
-    addDoc(orders, order)
-      .then((res) => setOrderId(res.id))
-      .catch((err) => console.log(err))
-      .finally(() => emptyCart());
+      setDataForm({
+        name: "",
+        phone: "",
+        mail: "",
+        mailconfirm: "",
+      });
 
-    const queryCollection = collection(db, "productos");
-    const queryUpdateStock = await query(
-      queryCollection, //  => esto devuelve los id's de cartlist ['asdasdvbdbfgbd', 'kfogbmfopgberp']
-      where(
-        documentId(),
-        "in",
-        cartList.map((prod) => prod.id)
-      )
-    );
+      mailsInput[0].classList.add(
+        "input",
+        "border-green-600",
+        "input-bordered",
+        "w-full",
+        "mail"
+      );
+      mailsInput[1].classList.add(
+        "input",
+        "border-green-600",
+        "input-bordered",
+        "w-full",
+        "mail"
+      );
 
-    const batch = writeBatch(db);
-    await getDocs(queryUpdateStock).then((resp) =>
-      resp.docs.forEach((res) =>
-        batch.update(res.ref, {
-          stock:
-            res.data().stock -
-            cartList.find((item) => item.id === res.id).cantidad,
-        })
-      )
-    );
-    batch.commit();
+      setTimeout(() => {
+        mailsInput[0].classList.remove("border-green-600");
+        mailsInput[1].classList.remove("border-green-600");
+      }, 3000);
+
+      tooltipMail.classList.add("tooltip", "tooltip-top");
+
+      const db = getFirestore();
+      //generar order
+      const orders = collection(db, "orders");
+      addDoc(orders, order)
+        .then((res) => setOrderId(res.id))
+        .catch((err) => console.log(err))
+        .finally(() => emptyCart());
+
+      const queryCollection = collection(db, "productos");
+      const queryUpdateStock = await query(
+        queryCollection, //  => esto devuelve los id's de cartlist ['asdasdvbdbfgbd', 'kfogbmfopgberp']
+        where(
+          documentId(),
+          "in",
+          cartList.map((prod) => prod.id)
+        )
+      );
+
+      const batch = writeBatch(db);
+      await getDocs(queryUpdateStock).then((resp) =>
+        resp.docs.forEach((res) =>
+          batch.update(res.ref, {
+            stock:
+              res.data().stock -
+              cartList.find((item) => item.id === res.id).cantidad,
+          })
+        )
+      );
+      batch.commit();
+    } else {
+      mailsInput[0].classList.add(
+        "input",
+        "border-red-600",
+        "input-bordered",
+        "w-full",
+        "mail"
+      );
+      mailsInput[1].classList.add(
+        "input",
+        "border-red-600",
+        "input-bordered",
+        "w-full",
+        "mail"
+      );
+      tooltipMail.classList.add("tooltip", "tooltip-top", "tooltip-open");
+      setTimeout(() => {
+        mailsInput[0].classList.remove("border-red-600");
+        mailsInput[1].classList.remove("border-red-600");
+        tooltipMail.classList.remove("tooltip-open");
+      }, 3000);
+    }
   };
 
   const handleInputChange = (e) => {
@@ -96,19 +146,7 @@ const CartActions = ({ cartList, totalPrice, emptyCart }) => {
                 name="name"
                 value={dataForm.name}
                 onChange={handleInputChange}
-                className="input input-bordered"
-                required
-              />
-            </label>
-            <label className="input-group">
-              <span className="text-base">Email</span>
-              <input
-                type="mail"
-                placeholder="john@doe.com"
-                name="mail"
-                value={dataForm.mail}
-                onChange={handleInputChange}
-                className="input input-bordered"
+                className="input input-bordered w-full"
                 required
               />
             </label>
@@ -120,7 +158,37 @@ const CartActions = ({ cartList, totalPrice, emptyCart }) => {
                 name="phone"
                 value={dataForm.phone}
                 onChange={handleInputChange}
-                className="input input-bordered"
+                className="input input-bordered w-full"
+                required
+              />
+            </label>
+            <label className="input-group">
+              <span className="text-base">Email</span>
+              <div
+                className="tooltip-top tooltip-error"
+                id="tooltipMail"
+                data-tip="Los mails deben coincidir"
+              ></div>
+              <input
+                type="mail"
+                placeholder="john@doe.com"
+                name="mail"
+                value={dataForm.mail}
+                onChange={handleInputChange}
+                className="mail input input-bordered w-full"
+                required
+              />
+            </label>
+            <span className="text-lg">Confirme su mail</span>
+            <label className="input-group">
+              <span className="text-base">Email</span>
+              <input
+                type="mail"
+                placeholder="john@doe.com"
+                name="mailconfirm"
+                value={dataForm.mailconfirm}
+                onChange={handleInputChange}
+                className="mail input input-bordered w-full"
                 required
               />
             </label>
@@ -154,7 +222,9 @@ const CartActions = ({ cartList, totalPrice, emptyCart }) => {
             </figure>
             <div className="card-body">
               <h2 className="card-title">¡Felicitaciones!</h2>
-              <p className="text-lg">Su orden fue generada con exito: {orderId}</p>
+              <p className="text-lg">
+                Su orden fue generada con exito: {orderId}
+              </p>
             </div>
           </div>
         )}
